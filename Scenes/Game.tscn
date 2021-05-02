@@ -14,16 +14,58 @@ font_data = ExtResource( 4 )
 script = ExtResource( 5 )
 
 [node name="Plot" parent="." instance=ExtResource( 1 )]
-position = Vector2( 374.671, 298.951 )
-time_between_stages = 3
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 236.43
+margin_top = 152.431
+margin_right = 300.43
+margin_bottom = 216.431
+rect_scale = Vector2( 2, 2 )
 
 [node name="Plot2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 479.121, 300.366 )
-time_between_stages = 3
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 407.281
+margin_top = 151.593
+margin_right = 471.281
+margin_bottom = 215.593
+rect_scale = Vector2( 2, 2 )
 
 [node name="Plot3" parent="." instance=ExtResource( 1 )]
-position = Vector2( 588.218, 301.78 )
-time_between_stages = 3
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 585.58
+margin_top = 153.091
+margin_right = 649.58
+margin_bottom = 217.091
+rect_scale = Vector2( 2, 2 )
+
+[node name="Plot4" parent="." instance=ExtResource( 1 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 237.223
+margin_top = 334.387
+margin_right = 301.223
+margin_bottom = 398.387
+rect_scale = Vector2( 2, 2 )
+
+[node name="Plot5" parent="." instance=ExtResource( 1 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 411.027
+margin_top = 336.634
+margin_right = 475.027
+margin_bottom = 400.634
+rect_scale = Vector2( 2, 2 )
+
+[node name="Plot6" parent="." instance=ExtResource( 1 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 585.58
+margin_top = 339.631
+margin_right = 649.58
+margin_bottom = 403.631
+rect_scale = Vector2( 2, 2 )
 
 [node name="Resources" type="Node" parent="." groups=[
 "resources",
@@ -57,3 +99,10 @@ text = "0"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[connection signal="pressed" from="Plot" to="Plot" method="_on_Plot_pressed"]
+[connection signal="pressed" from="Plot2" to="Plot2" method="_on_Plot_pressed"]
+[connection signal="pressed" from="Plot3" to="Plot3" method="_on_Plot_pressed"]
+[connection signal="pressed" from="Plot4" to="Plot4" method="_on_Plot_pressed"]
+[connection signal="pressed" from="Plot5" to="Plot5" method="_on_Plot_pressed"]
+[connection signal="pressed" from="Plot6" to="Plot6" method="_on_Plot_pressed"]

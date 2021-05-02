@@ -6,8 +6,9 @@
 [ext_resource path="res://Assets/Sprites/Carrot/CarrotStageTwo.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Sprites/Carrot/CarrotStageOne.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Sprites/Carrot/CarrotStageZero.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Sprites/Plot/PlotHover.png" type="Texture" id=7]
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 6 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 3 ) ],
 "loop": true,
@@ -15,27 +16,24 @@ animations = [ {
 "speed": 0.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 31.9895, 32.0902 )
-
-[node name="Plot" type="Area2D" groups=[
+[node name="Plot" type="TextureButton" groups=[
 "resources",
 ]]
-position = Vector2( 511.143, 303.194 )
+anchor_right = 0.062
+anchor_bottom = 0.107
+margin_right = -63.488
+margin_bottom = -64.2
+texture_normal = ExtResource( 2 )
+texture_hover = ExtResource( 7 )
 script = ExtResource( 1 )
 __meta__ = {
-"_edit_group_": true
+"_edit_group_": true,
+"_edit_use_anchors_": true
 }
 
-[node name="PlotBackground" type="Sprite" parent="."]
-texture = ExtResource( 2 )
-
 [node name="PlantSprites" type="AnimatedSprite" parent="."]
-frames = SubResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-shape = SubResource( 1 )
+frames = SubResource( 1 )
+centered = false
 
 [connection signal="mouse_entered" from="." to="." method="_on_Plot_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_Plot_mouse_exited"]
