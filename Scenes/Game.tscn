@@ -10,62 +10,99 @@
 size = 32
 font_data = ExtResource( 4 )
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node"]
 script = ExtResource( 5 )
 
-[node name="Plot" parent="." instance=ExtResource( 1 )]
+[node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 236.43
-margin_top = 152.431
-margin_right = 300.43
-margin_bottom = 216.431
-rect_scale = Vector2( 2, 2 )
+margin_left = -0.943909
+margin_right = -0.943848
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Plot2" parent="." instance=ExtResource( 1 )]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 407.281
-margin_top = 151.593
-margin_right = 471.281
-margin_bottom = 215.593
-rect_scale = Vector2( 2, 2 )
+[node name="GridContainer" type="GridContainer" parent="CenterContainer"]
+margin_left = 540.0
+margin_top = 260.0
+margin_right = 740.0
+margin_bottom = 460.0
+columns = 3
 
-[node name="Plot3" parent="." instance=ExtResource( 1 )]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 585.58
-margin_top = 153.091
-margin_right = 649.58
-margin_bottom = 217.091
-rect_scale = Vector2( 2, 2 )
+[node name="Plot" parent="CenterContainer/GridContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 64.0
+margin_bottom = 64.0
+rect_scale = Vector2( 1, 1 )
 
-[node name="Plot4" parent="." instance=ExtResource( 1 )]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 237.223
-margin_top = 334.387
-margin_right = 301.223
-margin_bottom = 398.387
-rect_scale = Vector2( 2, 2 )
+[node name="Plot2" parent="CenterContainer/GridContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 68.0
+margin_right = 132.0
+margin_bottom = 64.0
+rect_scale = Vector2( 1, 1 )
 
-[node name="Plot5" parent="." instance=ExtResource( 1 )]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 411.027
-margin_top = 336.634
-margin_right = 475.027
-margin_bottom = 400.634
-rect_scale = Vector2( 2, 2 )
+[node name="Plot3" parent="CenterContainer/GridContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 136.0
+margin_right = 200.0
+margin_bottom = 64.0
+rect_scale = Vector2( 1, 1 )
 
-[node name="Plot6" parent="." instance=ExtResource( 1 )]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 585.58
-margin_top = 339.631
-margin_right = 649.58
-margin_bottom = 403.631
-rect_scale = Vector2( 2, 2 )
+[node name="Plot4" parent="CenterContainer/GridContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 68.0
+margin_right = 64.0
+margin_bottom = 132.0
+rect_scale = Vector2( 1, 1 )
+
+[node name="Plot5" parent="CenterContainer/GridContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 68.0
+margin_top = 68.0
+margin_right = 132.0
+margin_bottom = 132.0
+rect_scale = Vector2( 1, 1 )
+
+[node name="Plot6" parent="CenterContainer/GridContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 136.0
+margin_top = 68.0
+margin_right = 200.0
+margin_bottom = 132.0
+rect_scale = Vector2( 1, 1 )
+
+[node name="Plot7" parent="CenterContainer/GridContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 136.0
+margin_right = 64.0
+margin_bottom = 200.0
+rect_scale = Vector2( 1, 1 )
+
+[node name="Plot8" parent="CenterContainer/GridContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 68.0
+margin_top = 136.0
+margin_right = 132.0
+margin_bottom = 200.0
+rect_scale = Vector2( 1, 1 )
+
+[node name="Plot9" parent="CenterContainer/GridContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 136.0
+margin_top = 136.0
+margin_right = 200.0
+margin_bottom = 200.0
+rect_scale = Vector2( 1, 1 )
 
 [node name="Resources" type="Node" parent="." groups=[
 "resources",
@@ -77,6 +114,7 @@ script = ExtResource( 2 )
 [node name="CarrotDisplay" type="HBoxContainer" parent="Resources/GUI"]
 margin_right = 40.0
 margin_bottom = 40.0
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -84,6 +122,7 @@ __meta__ = {
 [node name="CarrotIcon" type="TextureRect" parent="Resources/GUI/CarrotDisplay"]
 margin_right = 64.0
 margin_bottom = 64.0
+mouse_filter = 2
 texture = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -99,10 +138,3 @@ text = "0"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[connection signal="pressed" from="Plot" to="Plot" method="_on_Plot_pressed"]
-[connection signal="pressed" from="Plot2" to="Plot2" method="_on_Plot_pressed"]
-[connection signal="pressed" from="Plot3" to="Plot3" method="_on_Plot_pressed"]
-[connection signal="pressed" from="Plot4" to="Plot4" method="_on_Plot_pressed"]
-[connection signal="pressed" from="Plot5" to="Plot5" method="_on_Plot_pressed"]
-[connection signal="pressed" from="Plot6" to="Plot6" method="_on_Plot_pressed"]
