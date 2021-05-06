@@ -19,8 +19,8 @@ animations = [ {
 [node name="Plot" type="TextureButton" groups=[
 "resources",
 ]]
-anchor_right = 0.125
-anchor_bottom = 0.213
+anchor_right = 0.1
+anchor_bottom = 0.1775
 margin_right = -64.0
 margin_bottom = -63.7998
 rect_scale = Vector2( 2, 2 )

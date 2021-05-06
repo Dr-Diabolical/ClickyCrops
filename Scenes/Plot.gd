@@ -12,16 +12,14 @@ var stage_timer
 onready var plant_sprites = $PlantSprites
 
 func _ready():
-	create_stage_timer()
 	plant_sprites.frame = stage
-	clear_plot()
 	fill_plot("Carrots", 5, 3, 1)
 
-func fill_plot(crop_name, crop_amount, grown_stage, seconds_between_stages):
-	self.crop_name = crop_name
-	self.crop_amount = crop_amount
-	self.grown_stage = grown_stage
-	self.seconds_between_stages = seconds_between_stages
+func fill_plot(new_crop_name, new_crop_amount, new_grown_stage, new_seconds_between_stages):
+	crop_name = new_crop_name
+	crop_amount = new_crop_amount
+	grown_stage = new_grown_stage
+	seconds_between_stages = new_seconds_between_stages
 	create_stage_timer()
 
 func clear_plot():
@@ -46,7 +44,10 @@ func harvest_plot():
 func create_stage_timer():
 	stage_timer = Timer.new()
 	stage_timer.connect("timeout", self, "_on_Stage_Timer_timeout")
-	stage_timer.wait_time = seconds_between_stages
+	if (not seconds_between_stages > 0):
+		stage_timer.wait_time = 1
+	else:
+		stage_timer.wait_time = seconds_between_stages
 	add_child(stage_timer)
 	stage_timer.start()
 
