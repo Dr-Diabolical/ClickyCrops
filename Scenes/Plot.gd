@@ -3,23 +3,20 @@ extends TextureButton
 export var crop_name = ""
 export var crop_amount = 0
 
+onready var crop_sprites = $CropSprites
+
 var stage = 0
-export var grown_stage = 0
+var grown_stage = 0
 export var seconds_between_stages = 0
 var is_grown = false
 var stage_timer
-
-onready var plant_sprites = $PlantSprites
-
-func _ready():
-	plant_sprites.frame = stage
-	fill_plot("Carrots", 5, 3, 1)
 
 func fill_plot(new_crop_name, new_crop_amount, new_grown_stage, new_seconds_between_stages):
 	crop_name = new_crop_name
 	crop_amount = new_crop_amount
 	grown_stage = new_grown_stage
 	seconds_between_stages = new_seconds_between_stages
+	crop_sprites.frame = 0
 	create_stage_timer()
 
 func clear_plot():
@@ -35,7 +32,7 @@ func reset_plot():
 	stage = 0
 	is_grown = false
 	stage_timer.start()
-	plant_sprites.frame = 0
+	crop_sprites.frame = 0
 	
 func harvest_plot():
 	reset_plot()
@@ -58,7 +55,7 @@ func check_if_grown():
 
 func increase_stage():
 	stage += 1
-	plant_sprites.frame = stage
+	crop_sprites.frame = stage
 	check_if_grown()
 
 func _on_Plot_pressed():
