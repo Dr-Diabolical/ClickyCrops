@@ -9,7 +9,7 @@
 animations = [ {
 "frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 2 ), ExtResource( 1 ) ],
 "loop": true,
-"name": "default",
+"name": "Carrots",
 "speed": 5.0
 } ]
 

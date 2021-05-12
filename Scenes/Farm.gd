@@ -18,3 +18,4 @@ func create_plots():
 		plots.append(plot.instance())
 		plot_node.add_child(plots[n])
 	plots[2].fill_plot("Carrots", 5, 3, 1)
+	plots[1].fill_plot("Potatoes", 5, 5, 1)
