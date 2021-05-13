@@ -16,7 +16,6 @@ script = ExtResource( 5 )
 
 [node name="Farm" type="Node" parent="."]
 script = ExtResource( 6 )
-plot_amount = 3
 
 [node name="Center" type="CenterContainer" parent="Farm"]
 anchor_left = -0.00117054

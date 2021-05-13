@@ -16,7 +16,8 @@ func fill_plot(new_crop_name, new_crop_amount, new_grown_stage, new_seconds_betw
 	crop_amount = new_crop_amount
 	grown_stage = new_grown_stage
 	seconds_between_stages = new_seconds_between_stages
-	crop_sprites.animation = new_crop_name
+	crop_sprites.frames = load("res://Resources/CropSprites.tres")
+	crop_sprites.animation = crop_name
 	crop_sprites.frame = 0
 	create_stage_timer()
 

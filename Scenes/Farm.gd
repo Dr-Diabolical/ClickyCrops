@@ -1,6 +1,6 @@
 extends Node
 
-export var plot_amount = 5
+export var plot_amount = 1
 var plots = []
 onready var plot = load("res://Scenes/Plot.tscn")
 
@@ -17,5 +17,4 @@ func create_plots():
 	for n in plot_amount:
 		plots.append(plot.instance())
 		plot_node.add_child(plots[n])
-	plots[2].fill_plot("Carrots", 5, 3, 1)
-	plots[1].fill_plot("Potatoes", 5, 5, 1)
+	plots[0].fill_plot("Carrots", 5, 3, 1)
