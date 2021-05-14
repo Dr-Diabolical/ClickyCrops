@@ -4,7 +4,7 @@ var plot_amount = 3
 var plots = []
 
 onready var plot = load("res://Scenes/Plot.tscn")
-onready var plot_node = $Center/Plots
+onready var plot_node = $PlotDisplay/Center/Plots
 
 func _ready():
 	create_plots()

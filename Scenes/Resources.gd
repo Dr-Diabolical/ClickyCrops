@@ -6,9 +6,9 @@ var resources = {
 	"Potatoes": 0
 }
 
-onready var coin_amount = $GUI/IconDisplay/CoinDisplay/CoinAmount
-onready var carrot_amount = $GUI/IconDisplay/CarrotDisplay/CarrotAmount
-onready var potato_amount = $GUI/IconDisplay/PotatoDisplay/PotatoAmount
+onready var coin_amount = $ResourceDisplay/IconDisplay/CoinDisplay/CoinAmount
+onready var carrot_amount = $ResourceDisplay/IconDisplay/CarrotDisplay/CarrotAmount
+onready var potato_amount = $ResourceDisplay/IconDisplay/PotatoDisplay/PotatoAmount
 
 func _ready():
 	update_resource_display()

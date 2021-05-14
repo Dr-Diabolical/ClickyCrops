@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Assets/Sprites/Potato/PotatoIcon.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Resources.gd" type="Script" id=2]
@@ -7,6 +7,11 @@
 [ext_resource path="res://Scenes/Game.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/Farm.gd" type="Script" id=6]
 [ext_resource path="res://Assets/Sprites/CoinIcon.png" type="Texture" id=7]
+[ext_resource path="res://Scenes/Shop.tscn" type="PackedScene" id=8]
+
+[sub_resource type="DynamicFont" id=2]
+size = 50
+font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -18,7 +23,9 @@ script = ExtResource( 5 )
 [node name="Farm" type="Node" parent="."]
 script = ExtResource( 6 )
 
-[node name="Center" type="CenterContainer" parent="Farm"]
+[node name="PlotDisplay" type="CanvasLayer" parent="Farm"]
+
+[node name="Center" type="CenterContainer" parent="Farm/PlotDisplay"]
 anchor_left = -0.00117054
 anchor_top = 0.00208096
 anchor_right = 0.998829
@@ -32,30 +39,49 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Plots" type="GridContainer" parent="Farm/Center"]
+[node name="Plots" type="GridContainer" parent="Farm/PlotDisplay/Center"]
 margin_left = 639.0
 margin_top = 359.0
 margin_right = 639.0
 margin_bottom = 359.0
+
+[node name="ShopDisplay" type="CanvasLayer" parent="Farm"]
+
+[node name="Shop" parent="Farm/ShopDisplay" groups=[
+"shop",
+] instance=ExtResource( 8 )]
+
+[node name="ShopButton" type="Button" parent="Farm/ShopDisplay"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 24.0
+margin_top = -88.0
+margin_right = 160.0
+margin_bottom = -25.0
+custom_fonts/font = SubResource( 2 )
+text = "Shop"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Resources" type="Node" parent="." groups=[
 "resources",
 ]]
 script = ExtResource( 2 )
 
-[node name="GUI" type="CanvasLayer" parent="Resources"]
+[node name="ResourceDisplay" type="CanvasLayer" parent="Resources"]
 
-[node name="IconDisplay" type="HBoxContainer" parent="Resources/GUI"]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 310.0
-margin_bottom = 72.0
+[node name="IconDisplay" type="HBoxContainer" parent="Resources/ResourceDisplay"]
+margin_left = 24.0
+margin_top = 24.0
+margin_right = 326.0
+margin_bottom = 88.0
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CoinDisplay" type="HBoxContainer" parent="Resources/GUI/IconDisplay"]
+[node name="CoinDisplay" type="HBoxContainer" parent="Resources/ResourceDisplay/IconDisplay"]
 margin_right = 94.0
 margin_bottom = 64.0
 mouse_filter = 2
@@ -64,7 +90,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CoinIcon" type="TextureRect" parent="Resources/GUI/IconDisplay/CoinDisplay"]
+[node name="CoinIcon" type="TextureRect" parent="Resources/ResourceDisplay/IconDisplay/CoinDisplay"]
 margin_right = 64.0
 margin_bottom = 64.0
 mouse_filter = 2
@@ -73,7 +99,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CoinAmount" type="Label" parent="Resources/GUI/IconDisplay/CoinDisplay"]
+[node name="CoinAmount" type="Label" parent="Resources/ResourceDisplay/IconDisplay/CoinDisplay"]
 margin_left = 74.0
 margin_top = 14.0
 margin_right = 94.0
@@ -84,7 +110,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CarrotDisplay" type="HBoxContainer" parent="Resources/GUI/IconDisplay"]
+[node name="CarrotDisplay" type="HBoxContainer" parent="Resources/ResourceDisplay/IconDisplay"]
 margin_left = 104.0
 margin_right = 198.0
 margin_bottom = 64.0
@@ -94,7 +120,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CarrotIcon" type="TextureRect" parent="Resources/GUI/IconDisplay/CarrotDisplay"]
+[node name="CarrotIcon" type="TextureRect" parent="Resources/ResourceDisplay/IconDisplay/CarrotDisplay"]
 margin_right = 64.0
 margin_bottom = 64.0
 mouse_filter = 2
@@ -103,7 +129,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CarrotAmount" type="Label" parent="Resources/GUI/IconDisplay/CarrotDisplay"]
+[node name="CarrotAmount" type="Label" parent="Resources/ResourceDisplay/IconDisplay/CarrotDisplay"]
 margin_left = 74.0
 margin_top = 14.0
 margin_right = 94.0
@@ -114,7 +140,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PotatoDisplay" type="HBoxContainer" parent="Resources/GUI/IconDisplay"]
+[node name="PotatoDisplay" type="HBoxContainer" parent="Resources/ResourceDisplay/IconDisplay"]
 margin_left = 208.0
 margin_right = 302.0
 margin_bottom = 64.0
@@ -124,7 +150,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PotatoIcon" type="TextureRect" parent="Resources/GUI/IconDisplay/PotatoDisplay"]
+[node name="PotatoIcon" type="TextureRect" parent="Resources/ResourceDisplay/IconDisplay/PotatoDisplay"]
 margin_right = 64.0
 margin_bottom = 64.0
 mouse_filter = 2
@@ -133,7 +159,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PotatoAmount" type="Label" parent="Resources/GUI/IconDisplay/PotatoDisplay"]
+[node name="PotatoAmount" type="Label" parent="Resources/ResourceDisplay/IconDisplay/PotatoDisplay"]
 margin_left = 74.0
 margin_top = 14.0
 margin_right = 94.0
@@ -143,3 +169,5 @@ text = "0"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[connection signal="pressed" from="Farm/ShopDisplay/ShopButton" to="Farm/ShopDisplay/Shop" method="_on_ShopButton_pressed"]
