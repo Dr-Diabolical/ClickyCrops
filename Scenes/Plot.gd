@@ -1,22 +1,22 @@
 extends TextureButton
 
-export var crop_name = ""
-export var crop_amount = 0
+# Comment code
 
-onready var crop_sprites = $CropSprites
-
+var crop_name = ""
+var crop_amount = 0
 var stage = 0
 var grown_stage = 0
-export var seconds_between_stages = 0
+var seconds_between_stages = 0
 var is_grown = false
 var stage_timer
+
+onready var crop_sprites = $CropSprites
 
 func fill_plot(new_crop_name, new_crop_amount, new_grown_stage, new_seconds_between_stages):
 	crop_name = new_crop_name
 	crop_amount = new_crop_amount
 	grown_stage = new_grown_stage
 	seconds_between_stages = new_seconds_between_stages
-	crop_sprites.frames = load("res://Resources/CropSprites.tres")
 	crop_sprites.animation = crop_name
 	crop_sprites.frame = 0
 	create_stage_timer()
@@ -28,6 +28,8 @@ func clear_plot():
 	grown_stage = 0
 	seconds_between_stages = 0
 	is_grown = false
+	crop_sprites.animation = "default"
+	crop_sprites.frame = 0
 	stage_timer.queue_free()
 
 func reset_plot():

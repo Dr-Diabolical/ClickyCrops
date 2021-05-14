@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/MainMenu.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Fonts/Airborne.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 80
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 2 )
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Center" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="Center"]
+margin_left = 507.0
+margin_top = 203.0
+margin_right = 772.0
+margin_bottom = 516.0
+custom_constants/separation = 15
+
+[node name="Label" type="Label" parent="Center/VBox"]
+margin_right = 265.0
+margin_bottom = 183.0
+custom_fonts/font = SubResource( 1 )
+text = "Clicky
+Crops"
+align = 1
+valign = 1
+
+[node name="ButtonPlay" type="Button" parent="Center/VBox"]
+margin_top = 198.0
+margin_right = 265.0
+margin_bottom = 248.0
+rect_min_size = Vector2( 150, 50 )
+custom_fonts/font = SubResource( 2 )
+text = "PLAY"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonExit" type="Button" parent="Center/VBox"]
+margin_top = 263.0
+margin_right = 265.0
+margin_bottom = 313.0
+rect_min_size = Vector2( 150, 50 )
+custom_fonts/font = SubResource( 2 )
+text = "EXIT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Center/VBox/ButtonPlay" to="." method="_on_ButtonPlay_pressed"]
+[connection signal="pressed" from="Center/VBox/ButtonExit" to="." method="_on_ButtonExit_pressed"]
