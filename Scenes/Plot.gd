@@ -11,6 +11,8 @@ var stage_timer # The timer that handles counting the seconds between stages
 # The AnimatedSprites node for handling the sprites of the crops
 onready var crop_sprites = $CropSprites
 
+signal crop_harvested(crop_name, crop_amount)
+
 # Adds a crop to the plot, including all the data that is associated with the
 # crop. 
 func fill_plot(new_crop_name, new_crop_amount, new_grown_stage, new_seconds_between_stages):
@@ -41,10 +43,10 @@ func reset_plot():
 	stage_timer.start()
 	crop_sprites.frame = 0
 
-# Resets the crop, and sends harvest info to resources
+# Resets the crop, and sends harvest info to farm
 func harvest_plot():
 	reset_plot()
-	get_tree().call_group("resources", "add_to_resources", crop_name, crop_amount)
+	emit_signal("crop_harvested", crop_name, crop_amount)
 
 # Creates a timer to handle crop stage changing
 func create_stage_timer():
