@@ -9,7 +9,7 @@ var is_grown = false # If the crop is grown or not
 var stage_timer # The timer that handles counting the seconds between stages
 
 # The AnimatedSprites node for handling the sprites of the crops
-onready var crop_sprites = $CropSprites 
+onready var crop_sprites = $CropSprites
 
 # Adds a crop to the plot, including all the data that is associated with the
 # crop. 
@@ -69,11 +69,11 @@ func increase_stage():
 	crop_sprites.frame = stage
 	check_if_grown()
 
+# When the timer times out, increase crop stage
+func _on_Stage_Timer_timeout():
+	increase_stage()
+
 # On press, if the crop is grown, harvest the plot
 func _on_Plot_pressed():
 	if (is_grown):
 		harvest_plot()
-
-# When the timer times out, increase crop stage
-func _on_Stage_Timer_timeout():
-	increase_stage()

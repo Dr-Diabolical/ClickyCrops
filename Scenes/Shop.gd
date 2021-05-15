@@ -13,8 +13,10 @@ func toggle_shop():
 	if (not self.is_visible_in_tree()):
 		self.show()
 	else:
-		self.hide()
+		self.hide()	
 
-# On button press, toggle the shop visibility
-func _on_ShopButton_pressed():
-	toggle_shop()
+func _on_ButtonCarrot_pressed():
+	pass
+
+func _on_ButtonPotato_pressed():
+	pass

@@ -12,6 +12,7 @@
 [node name="Shop" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 script = ExtResource( 7 )
 __meta__ = {
 "_edit_lock_": true,
@@ -55,3 +56,6 @@ texture_hover = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[connection signal="pressed" from="HBox/ButtonCarrot" to="." method="_on_ButtonCarrot_pressed"]
+[connection signal="pressed" from="HBox/ButtonPotato" to="." method="_on_ButtonPotato_pressed"]

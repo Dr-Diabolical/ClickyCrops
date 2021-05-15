@@ -9,11 +9,11 @@
 [ext_resource path="res://Assets/Sprites/CoinIcon.png" type="Texture" id=7]
 [ext_resource path="res://Scenes/Shop.tscn" type="PackedScene" id=8]
 
-[sub_resource type="DynamicFont" id=2]
-size = 50
+[sub_resource type="DynamicFont" id=3]
+size = 30
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 size = 32
 font_data = ExtResource( 4 )
 
@@ -34,6 +34,7 @@ margin_left = 1.49829
 margin_top = -1.49829
 margin_right = 1.49829
 margin_bottom = -1.49829
+mouse_filter = 2
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
@@ -44,6 +45,7 @@ margin_left = 639.0
 margin_top = 359.0
 margin_right = 639.0
 margin_bottom = 359.0
+mouse_filter = 2
 
 [node name="ShopDisplay" type="CanvasLayer" parent="Farm"]
 
@@ -51,15 +53,15 @@ margin_bottom = 359.0
 "shop",
 ] instance=ExtResource( 8 )]
 
-[node name="ShopButton" type="Button" parent="Farm/ShopDisplay"]
+[node name="ShopButton" type="Button" parent="Farm"]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 24.0
-margin_top = -88.0
-margin_right = 160.0
-margin_bottom = -25.0
-custom_fonts/font = SubResource( 2 )
-text = "Shop"
+margin_left = 32.0
+margin_top = -72.0
+margin_right = 213.0
+margin_bottom = -31.0
+custom_fonts/font = SubResource( 3 )
+text = "SHOW SHOP"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -76,6 +78,7 @@ margin_left = 24.0
 margin_top = 24.0
 margin_right = 326.0
 margin_bottom = 88.0
+mouse_filter = 2
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
@@ -104,7 +107,7 @@ margin_left = 74.0
 margin_top = 14.0
 margin_right = 94.0
 margin_bottom = 50.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "0"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -134,7 +137,7 @@ margin_left = 74.0
 margin_top = 14.0
 margin_right = 94.0
 margin_bottom = 50.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "0"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -164,10 +167,10 @@ margin_left = 74.0
 margin_top = 14.0
 margin_right = 94.0
 margin_bottom = 50.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "0"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="Farm/ShopDisplay/ShopButton" to="Farm/ShopDisplay/Shop" method="_on_ShopButton_pressed"]
+[connection signal="pressed" from="Farm/ShopButton" to="Farm" method="_on_ShopButton_pressed"]
