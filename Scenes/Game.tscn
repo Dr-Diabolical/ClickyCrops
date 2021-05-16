@@ -8,7 +8,7 @@
 [ext_resource path="res://Assets/Sprites/CoinIcon.png" type="Texture" id=7]
 [ext_resource path="res://Scenes/Shop.tscn" type="PackedScene" id=8]
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=1]
 size = 30
 font_data = ExtResource( 4 )
 
@@ -59,7 +59,7 @@ margin_left = 32.0
 margin_top = -72.0
 margin_right = 213.0
 margin_bottom = -31.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 1 )
 text = "SHOW SHOP"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -108,6 +108,7 @@ __meta__ = {
 }
 
 [node name="CarrotDisplay" type="HBoxContainer" parent="Farm/ResourceDisplay/IconDisplay"]
+visible = false
 margin_left = 104.0
 margin_right = 198.0
 margin_bottom = 64.0
@@ -138,8 +139,9 @@ __meta__ = {
 }
 
 [node name="PotatoDisplay" type="HBoxContainer" parent="Farm/ResourceDisplay/IconDisplay"]
-margin_left = 208.0
-margin_right = 302.0
+visible = false
+margin_left = 104.0
+margin_right = 198.0
 margin_bottom = 64.0
 mouse_filter = 2
 custom_constants/separation = 10
@@ -167,4 +169,5 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="buy_crop" from="Farm/ShopDisplay/Shop" to="Farm" method="_on_Shop_buy_crop"]
 [connection signal="pressed" from="Farm/ShopButton" to="Farm" method="_on_ShopButton_pressed"]

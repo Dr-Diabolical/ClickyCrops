@@ -25,34 +25,46 @@ onready var button_shop = $ShopButton
 
 # On ready, Creates initial plots
 func _ready():
-	create_plots()
-	plots[0].fill_plot("Carrots", 5, 3, 1)
+	starter_plots(initial_plot_amount)
 	update_resource_display()
 
 # Instantiates the inital amount of plots into the plots array
-func create_plots():
-	update_columns()
-	for i in initial_plot_amount:
-		plots.append(plot.instance())
-		plots[i].connect("crop_harvested", self, "add_to_resources")
-		plot_node.add_child(plots[i])
-
-# Adds plot instances to the plots array
-func add_plots(amount):
+func starter_plots(amount):
 	update_columns()
 	for i in amount:
 		plots.append(plot.instance())
-		plot_node.add_child(plots[i + initial_plot_amount])
+		plot_node.add_child(plots[i])
+		plots[i].connect("crop_harvested", self, "add_to_resources")
+		plots[i].fill_plot("Carrots", 5, 3, 2)
+
+# Adds plot instances to the plots array
+func add_plots(amount, type):
+	update_columns()
+	for i in amount:
+		plots.append(plot.instance())
+		plot_node.add_child(plots[i + plots.size() - 1])
+		plots[i + plots.size() - 1].connect("crop_harvested", self, "add_to_resources")
+		if (type == "Carrots"):
+			plots[i + plots.size() - 1].fill_plot("Carrots", 5, 3, 2)
+		if (type == "Potatoes"):
+			plots[i + plots.size() - 1].fill_plot("Potatoes", 8, 5, 4)
 
 # For every 2 plots, add a column to the plot node grid
 func update_columns():
 	if (plots.size() % 2 == 0):
 		plot_node.columns += 1
 
-# Add the specified amount of resources to the resource, and update the display
-func add_to_resources(crop_name, crop_amount):
+# Add the specified amount of resources, and update the display
+func add_to_resources(crop_name, amount):
 	if (resources.has(crop_name)):
-		resources[crop_name] = resources.get(crop_name) + crop_amount
+		resources[crop_name] = resources.get(crop_name) + amount
+		resources["Coins"] += 5
+		update_resource_display()
+
+# Remove the specified amount of resources, and update the display
+func remove_from_resources(crop_name, amount):
+	if (resources.has(crop_name)):
+		resources[crop_name] = resources.get(crop_name) - amount
 		update_resource_display()
 	
 # Updates the text of each resource display node
@@ -68,3 +80,12 @@ func _on_ShopButton_pressed():
 	else:
 		button_shop.text = "HIDE SHOP"
 	shop.toggle_shop()
+
+func _on_Shop_buy_crop(crop_name, cost):
+	if (resources["Coins"] >= cost):
+		resources["Coins"] -= cost
+		if (crop_name == "Carrots"):
+			add_plots(1, "Carrots")
+		if (crop_name == "Potatoes"):
+			add_plots(1, "Potatoes")
+	update_resource_display()
