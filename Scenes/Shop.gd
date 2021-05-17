@@ -4,7 +4,7 @@ extends Control
 onready var button_carrot = $HBox/ButtonCarrot
 onready var button_potato = $HBox/ButtonPotato
 
-signal buy_crop(crop_name, cost)
+signal buy_crop(crop_index)
 
 # On ready, hide the shop display
 func _ready():
@@ -17,8 +17,10 @@ func toggle_shop():
 	else:
 		self.hide()	
 
+# On carrots button press, emit the buy crop signal for carrots
 func _on_ButtonCarrot_pressed():
-	emit_signal("buy_crop", "Carrots", 5)
+	emit_signal("buy_crop", 0)
 
+# On potatoes button press, emit the buy crop signal for potatoes
 func _on_ButtonPotato_pressed():
-	emit_signal("buy_crop", "Potatoes", 10)
+	emit_signal("buy_crop", 1)

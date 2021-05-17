@@ -3,6 +3,13 @@ extends Node
 var initial_plot_amount = 1 # Initial amount of plots
 var plots = [] # Array of plot instances
 
+# Crop data, used to store and access the data on each crop
+var crop_names = []
+var crop_prices = []
+var crop_harvests = []
+var crop_grown_stages = []
+var crop_stage_lengths = []
+
 # Dictionary of resource names and amounts
 var resources = {
 	"Coins": 15,
@@ -25,40 +32,51 @@ onready var button_shop = $ShopButton
 
 # On ready, Creates initial plots
 func _ready():
+	get_crop_data()
 	starter_plots(initial_plot_amount)
 	update_resource_display()
 
 # Instantiates the inital amount of plots into the plots array
 func starter_plots(amount):
-	update_columns()
 	for i in amount:
 		plots.append(plot.instance())
 		plot_node.add_child(plots[i])
 		plots[i].connect("crop_harvested", self, "add_to_resources")
-		plots[i].fill_plot("Carrots", 5, 3, 2)
+		plots[i].fill_plot(crop_names[0], 
+						   crop_harvests[0], 
+						   crop_grown_stages[0], 
+						   crop_stage_lengths[0])
+	update_columns()
 
 # Adds plot instances to the plots array
-func add_plots(amount, type):
-	update_columns()
-	for i in amount:
+func add_plot(crop_index):
+	if (plots.size() > 0):
 		plots.append(plot.instance())
-		plot_node.add_child(plots[i + plots.size() - 1])
-		plots[i + plots.size() - 1].connect("crop_harvested", self, "add_to_resources")
-		if (type == "Carrots"):
-			plots[i + plots.size() - 1].fill_plot("Carrots", 5, 3, 2)
-		if (type == "Potatoes"):
-			plots[i + plots.size() - 1].fill_plot("Potatoes", 8, 5, 4)
+		plot_node.add_child(plots[plots.size() - 1])
+		plots[plots.size() - 1].connect("crop_harvested", self, "add_to_resources")
+		plots[plots.size() - 1].fill_plot(crop_names[crop_index], 
+										  crop_harvests[crop_index], 
+										  crop_grown_stages[crop_index], 
+										  crop_stage_lengths[crop_index])
+	update_columns()
 
-# For every 2 plots, add a column to the plot node grid
+# Updates the amount of columns depending on the amount of crops
+# Currently hardcoded, will fix soon
 func update_columns():
-	if (plots.size() % 2 == 0):
-		plot_node.columns += 1
+	if (plots.size() == 4):
+		plot_node.columns = 2
+	if (plots.size() == 9):
+		plot_node.columns = 3
+	if (plots.size() == 16):
+		plot_node.columns = 4
+	if (plots.size() == 25):
+		plot_node.columns = 5
 
 # Add the specified amount of resources, and update the display
 func add_to_resources(crop_name, amount):
 	if (resources.has(crop_name)):
 		resources[crop_name] = resources.get(crop_name) + amount
-		resources["Coins"] += 5
+		resources["Coins"] += amount * 2
 		update_resource_display()
 
 # Remove the specified amount of resources, and update the display
@@ -81,11 +99,24 @@ func _on_ShopButton_pressed():
 		button_shop.text = "HIDE SHOP"
 	shop.toggle_shop()
 
-func _on_Shop_buy_crop(crop_name, cost):
-	if (resources["Coins"] >= cost):
-		resources["Coins"] -= cost
-		if (crop_name == "Carrots"):
-			add_plots(1, "Carrots")
-		if (crop_name == "Potatoes"):
-			add_plots(1, "Potatoes")
+# On shop buy button, purchase the respective plot and crop
+func _on_Shop_buy_crop(crop_index):
+	if (resources.get("Coins") >= crop_prices[crop_index]):
+		resources["Coins"] -= crop_prices[crop_index]
+		add_plot(crop_index)
 	update_resource_display()
+
+# Parses the crop data from the crop data json file and stores the data
+# in the crop arrays
+func get_crop_data():
+	var file = File.new()
+	file.open("res://Data/crops.json", file.READ)
+	var text = file.get_as_text()
+	file.close()
+	var crop_data = parse_json(text)
+	for i in crop_data.crops.size():
+		crop_names.append(crop_data.crops[i].crop_name)
+		crop_prices.append(crop_data.crops[i].crop_price)
+		crop_harvests.append(crop_data.crops[i].harvest_amount)
+		crop_grown_stages.append(crop_data.crops[i].grown_stage)
+		crop_stage_lengths.append(crop_data.crops[i].stage_length)

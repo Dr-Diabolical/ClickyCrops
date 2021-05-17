@@ -108,7 +108,6 @@ __meta__ = {
 }
 
 [node name="CarrotDisplay" type="HBoxContainer" parent="Farm/ResourceDisplay/IconDisplay"]
-visible = false
 margin_left = 104.0
 margin_right = 198.0
 margin_bottom = 64.0
@@ -139,9 +138,8 @@ __meta__ = {
 }
 
 [node name="PotatoDisplay" type="HBoxContainer" parent="Farm/ResourceDisplay/IconDisplay"]
-visible = false
-margin_left = 104.0
-margin_right = 198.0
+margin_left = 208.0
+margin_right = 302.0
 margin_bottom = 64.0
 mouse_filter = 2
 custom_constants/separation = 10
