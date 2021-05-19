@@ -30,6 +30,8 @@ onready var potato_amount = $ResourceDisplay/IconDisplay/PotatoDisplay/PotatoAmo
 onready var shop = $ShopDisplay/Shop
 onready var button_shop = $ShopButton
 
+signal save(save_data)
+
 # On ready, Creates initial plots
 func _ready():
 	get_crop_data()

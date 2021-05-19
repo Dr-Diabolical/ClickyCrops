@@ -6,7 +6,7 @@
 [ext_resource path="res://Assets/Sprites/Potato/PotatoIcon.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Sprites/Potato/PotatoIconHover.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Sprites/Potato/PotatoIconToggled.png" type="Texture" id=6]
-[ext_resource path="res://Scenes/Shop.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/Shop.gd" type="Script" id=7]
 [ext_resource path="res://Assets/Fonts/Airborne.ttf" type="DynamicFontData" id=8]
 
 [sub_resource type="DynamicFont" id=1]

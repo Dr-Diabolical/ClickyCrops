@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Scenes/Plot.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Plot.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/Plot/Plot.png" type="Texture" id=2]
 [ext_resource path="res://Resources/CropSprites.tres" type="SpriteFrames" id=3]
 [ext_resource path="res://Assets/Sprites/Plot/PlotHover.png" type="Texture" id=7]
