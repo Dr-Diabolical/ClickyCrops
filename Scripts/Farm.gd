@@ -35,7 +35,7 @@ func _ready():
 	load_resources()
 	update_resource_display()
 
-# Instantiates the inital amount of plots into the plots array
+# Loads the plot data from the json file and instantiates each plot
 func load_plots():
 	var plot_data = get_save_data()
 	for i in plot_data.plots.size():
@@ -49,7 +49,8 @@ func load_plots():
 						   crop_stage_lengths[index])
 		plots[i].set_stage(plot_data.plots[i].plot_crop_stage)
 	update_columns()
-	
+
+# Loads the resource data and applys the data for each crop resource
 func load_resources():
 	var resource_data = get_save_data()
 	resources["Coins"] = resource_data.resources.Coins
@@ -129,13 +130,15 @@ func get_crop_data():
 		crop_grown_stages.append(crop_data.crops[i].grown_stage)
 		crop_stage_lengths.append(crop_data.crops[i].stage_length)
 
+# Loads the data from the save json file and returns the data
 func get_save_data():
 	var file = File.new()
 	file.open("res://Data/save.json", file.READ)
 	var text = file.get_as_text()
 	file.close()
 	return parse_json(text)
-	
+
+# Saves the game data to the save json file
 func save_data():
 	var data = get_save_data()
 	data.resources.Coins = resources.get("Coins")

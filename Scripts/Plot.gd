@@ -70,7 +70,8 @@ func increase_stage():
 	stage += 1
 	crop_sprites.frame = stage
 	check_if_grown()
-	
+
+# Sets the stage of the crop and frame of the animation
 func set_stage(new_stage):
 	stage = new_stage
 	crop_sprites.frame = new_stage
