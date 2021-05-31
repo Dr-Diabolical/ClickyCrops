@@ -47,6 +47,7 @@ func load_plots():
 						   crop_harvests[index],
 						   crop_grown_stages[index],
 						   crop_stage_lengths[index])
+		plots[i].set_stage(plot_data.plots[i].plot_crop_stage)
 	update_columns()
 	
 func load_resources():
@@ -142,7 +143,8 @@ func save_data():
 	data.resources.Potatoes = resources.get("Potatoes")
 	data.plots.clear()
 	for i in plots.size():
-		data.plots.append({"plot_crop_name": plots[i].crop_name})
+		data.plots.append({"plot_crop_name": plots[i].crop_name,
+						   "plot_crop_stage": plots[i].stage})
 	
 	var file = File.new()
 	file.open("res://Data/save.json", file.WRITE)

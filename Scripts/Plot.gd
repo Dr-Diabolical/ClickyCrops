@@ -70,6 +70,11 @@ func increase_stage():
 	stage += 1
 	crop_sprites.frame = stage
 	check_if_grown()
+	
+func set_stage(new_stage):
+	stage = new_stage
+	crop_sprites.frame = new_stage
+	check_if_grown()
 
 # When the timer times out, increase crop stage
 func _on_Stage_Timer_timeout():
