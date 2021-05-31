@@ -1,8 +1,5 @@
 extends Node
 
-var initial_plot_amount = 1 # Initial amount of plots
-var plots = [] # Array of plot instances
-
 # Crop data, used to store and access the data on each crop
 var crop_names = []
 var crop_prices = []
@@ -17,6 +14,7 @@ var resources = {
 	"Potatoes": 0
 }
 
+var plots = [] # Array of plot instances
 # References for handling plot instances
 onready var plot = load("res://Scenes/Plot.tscn") # Preloads plot instance
 onready var plot_node = $PlotDisplay/Center/Plots # Plots parent node
@@ -30,14 +28,15 @@ onready var potato_amount = $ResourceDisplay/IconDisplay/PotatoDisplay/PotatoAmo
 onready var shop = $ShopDisplay/Shop
 onready var button_shop = $ShopButton
 
-# On ready, Creates initial plots
+# On ready, load plots and resources
 func _ready():
 	get_crop_data()
-	load_save_plots()
+	load_plots()
+	load_resources()
 	update_resource_display()
 
 # Instantiates the inital amount of plots into the plots array
-func load_save_plots():
+func load_plots():
 	var plot_data = get_save_data()
 	for i in plot_data.plots.size():
 		var index = crop_names.find(plot_data.plots[i].plot_crop_name, 0)
@@ -49,6 +48,12 @@ func load_save_plots():
 						   crop_grown_stages[index],
 						   crop_stage_lengths[index])
 	update_columns()
+	
+func load_resources():
+	var resource_data = get_save_data()
+	resources["Coins"] = resource_data.resources.Coins
+	resources["Carrots"] = resource_data.resources.Carrots
+	resources["Potatoes"] = resource_data.resources.Potatoes
 
 # Adds plot instances to the plots array
 func add_plot(crop_index):
@@ -132,11 +137,14 @@ func get_save_data():
 	
 func save_data():
 	var data = get_save_data()
+	data.resources.Coins = resources.get("Coins")
+	data.resources.Carrots = resources.get("Carrots")
+	data.resources.Potatoes = resources.get("Potatoes")
 	data.plots.clear()
+	for i in plots.size():
+		data.plots.append({"plot_crop_name": plots[i].crop_name})
+	
 	var file = File.new()
 	file.open("res://Data/save.json", file.WRITE)
-	for i in plots.size():
-		var new_data = {"plot_crop_name": plots[i].crop_name}
-		data.plots.append(new_data)
 	file.store_line(to_json(data))
 	file.close()
