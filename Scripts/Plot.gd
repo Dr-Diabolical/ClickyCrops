@@ -61,7 +61,7 @@ func create_stage_timer():
 
 # Checks if the crop stage is at the final grown stage
 func check_if_grown():
-	if (stage == grown_stage):
+	if (stage >= grown_stage):
 		is_grown = true
 		stage_timer.stop()
 

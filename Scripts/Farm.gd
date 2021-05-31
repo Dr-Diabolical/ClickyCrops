@@ -30,24 +30,24 @@ onready var potato_amount = $ResourceDisplay/IconDisplay/PotatoDisplay/PotatoAmo
 onready var shop = $ShopDisplay/Shop
 onready var button_shop = $ShopButton
 
-signal save(save_data)
-
 # On ready, Creates initial plots
 func _ready():
 	get_crop_data()
-	starter_plots(initial_plot_amount)
+	load_save_plots()
 	update_resource_display()
 
 # Instantiates the inital amount of plots into the plots array
-func starter_plots(amount):
-	for i in amount:
+func load_save_plots():
+	var plot_data = get_save_data()
+	for i in plot_data.plots.size():
+		var index = crop_names.find(plot_data.plots[i].plot_crop_name, 0)
 		plots.append(plot.instance())
 		plot_node.add_child(plots[i])
 		plots[i].connect("crop_harvested", self, "add_to_resources")
-		plots[i].fill_plot(crop_names[0], 
-						   crop_harvests[0], 
-						   crop_grown_stages[0], 
-						   crop_stage_lengths[0])
+		plots[i].fill_plot(crop_names[index],
+						   crop_harvests[index],
+						   crop_grown_stages[index],
+						   crop_stage_lengths[index])
 	update_columns()
 
 # Adds plot instances to the plots array
@@ -122,3 +122,21 @@ func get_crop_data():
 		crop_harvests.append(crop_data.crops[i].harvest_amount)
 		crop_grown_stages.append(crop_data.crops[i].grown_stage)
 		crop_stage_lengths.append(crop_data.crops[i].stage_length)
+
+func get_save_data():
+	var file = File.new()
+	file.open("res://Data/save.json", file.READ)
+	var text = file.get_as_text()
+	file.close()
+	return parse_json(text)
+	
+func save_data():
+	var data = get_save_data()
+	data.plots.clear()
+	var file = File.new()
+	file.open("res://Data/save.json", file.WRITE)
+	for i in plots.size():
+		var new_data = {"plot_crop_name": plots[i].crop_name}
+		data.plots.append(new_data)
+	file.store_line(to_json(data))
+	file.close()
