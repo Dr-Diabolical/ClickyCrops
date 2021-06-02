@@ -1,5 +1,8 @@
 extends Node
 
+# TODO: Allow for multiple save files by adding a variable in Game.gd that
+# holds which file to use, then bring it here
+
 # Crop data, used to store and access the data on each crop
 var crop_names = []
 var crop_prices = []
@@ -9,7 +12,7 @@ var crop_stage_lengths = []
 
 # Dictionary of resource names and amounts
 var resources = {
-	"Coins": 15,
+	"Coins": 0,
 	"Carrots": 0,
 	"Potatoes": 0
 }
