@@ -40,7 +40,7 @@
 size = 30
 font_data = ExtResource( 2 )
 
-[sub_resource type="AnimatedTexture" id=3]
+[sub_resource type="AnimatedTexture" id=2]
 frames = 30
 fps = 30.0
 frame_0/texture = ExtResource( 35 )
@@ -103,7 +103,7 @@ frame_28/delay_sec = 0.0
 frame_29/texture = ExtResource( 25 )
 frame_29/delay_sec = 0.0
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=3]
 size = 32
 font_data = ExtResource( 2 )
 
@@ -172,7 +172,7 @@ __meta__ = {
 margin_right = 64.0
 margin_bottom = 64.0
 mouse_filter = 2
-texture = SubResource( 3 )
+texture = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -182,7 +182,7 @@ margin_left = 74.0
 margin_top = 14.0
 margin_right = 94.0
 margin_bottom = 50.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "0"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -212,7 +212,7 @@ margin_left = 74.0
 margin_top = 14.0
 margin_right = 94.0
 margin_bottom = 50.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "0"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -242,7 +242,7 @@ margin_left = 74.0
 margin_top = 14.0
 margin_right = 94.0
 margin_bottom = 50.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "0"
 __meta__ = {
 "_edit_use_anchors_": false

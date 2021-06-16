@@ -1,14 +1,14 @@
 extends Control
 
-# References to the shop buttons
-onready var button_carrot = $HBox/ButtonCarrot
-onready var button_potato = $HBox/ButtonPotato
+var crop_prices = []
 
 signal buy_crop(crop_index)
 
 # On ready, hide the shop display
 func _ready():
 	self.hide()
+	get_crop_prices()
+	set_shop_prices()
 
 # Toggles the visibility of the shop
 func toggle_shop():
@@ -16,6 +16,20 @@ func toggle_shop():
 		self.show()
 	else:
 		self.hide()	
+		
+func get_crop_prices():
+	var file = File.new()
+	file.open("res://Data/crops.json", file.READ)
+	var text = file.get_as_text()
+	file.close()
+	var crop_data = parse_json(text)
+	for i in crop_data.crops.size():
+		crop_prices.append(crop_data.crops[i].crop_price)
+
+func set_shop_prices():
+	var text = "COST: %d"
+	$HBox/Carrot/CostCarrot.text = text % crop_prices[0]
+	$HBox/Potato/CostPotato.text = text % crop_prices[1]
 
 # On carrots button press, emit the buy crop signal for carrots
 func _on_ButtonCarrot_pressed():
