@@ -1,3 +1,7 @@
+# Plot.gd
+# Handles the player's plot, including individual plot data and actions
+# Last modified: 10-12-2021
+
 extends TextureButton
 
 var crop_name = "" # Name of the crop planted in the plot

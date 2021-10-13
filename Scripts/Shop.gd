@@ -1,3 +1,8 @@
+# Shop.gd
+# Handles the shop, including displaying the shop and relevant data to the
+# player
+# Last modified: 10-12-2021
+
 extends Control
 
 var crop_prices = []
@@ -15,7 +20,7 @@ func toggle_shop():
 	if (not self.is_visible_in_tree()):
 		self.show()
 	else:
-		self.hide()	
+		self.hide()
 		
 func get_crop_prices():
 	var file = File.new()

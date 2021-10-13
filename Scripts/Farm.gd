@@ -1,3 +1,8 @@
+# Farm.gd
+# Handles the player's farm, including the player's plots, resources, and save
+# data
+# Last modified: 10-12-2021
+
 extends Node
 
 # TODO: Allow for multiple save files by adding a variable in Game.gd that
@@ -38,7 +43,7 @@ func _ready():
 	load_resources()
 	update_resource_display()
 
-# Loads the plot data from the json file and instantiates each plot
+# Loads the farm save data from the json file and instantiates each plot
 func load_plots():
 	var plot_data = get_save_data()
 	for i in plot_data.plots.size():
@@ -53,7 +58,7 @@ func load_plots():
 		plots[i].set_stage(plot_data.plots[i].plot_crop_stage)
 	update_columns()
 
-# Loads the resource data and applys the data for each crop resource
+# Loads the farm resource save data and applys the data for each crop resource
 func load_resources():
 	var resource_data = get_save_data()
 	resources["Coins"] = resource_data.resources.Coins
@@ -73,7 +78,7 @@ func add_plot(crop_index):
 	update_columns()
 
 # Updates the amount of columns depending on the amount of crops
-# Currently hardcoded, will fix soon
+# TODO: Make procedural and not hardcoded
 func update_columns():
 	if (plots.size() == 4):
 		plot_node.columns = 2
@@ -111,7 +116,7 @@ func _on_ShopButton_pressed():
 		button_shop.text = "HIDE SHOP"
 	shop.toggle_shop()
 
-# On shop buy button, purchase the respective plot and crop
+# On shop buy button, add the correct plot and subtract resource
 func _on_Shop_buy_crop(crop_index):
 	if (resources.get("Coins") >= crop_prices[crop_index]):
 		resources["Coins"] -= crop_prices[crop_index]
@@ -133,7 +138,7 @@ func get_crop_data():
 		crop_grown_stages.append(crop_data.crops[i].grown_stage)
 		crop_stage_lengths.append(crop_data.crops[i].stage_length)
 
-# Loads the data from the save json file and returns the data
+# Loads the farm save data from the save json file and returns the data
 func get_save_data():
 	var file = File.new()
 	file.open("res://Data/save.json", file.READ)
@@ -141,7 +146,7 @@ func get_save_data():
 	file.close()
 	return parse_json(text)
 
-# Saves the game data to the save json file
+# Saves the farm data to the save json file
 func save_data():
 	var data = get_save_data()
 	data.resources.Coins = resources.get("Coins")
