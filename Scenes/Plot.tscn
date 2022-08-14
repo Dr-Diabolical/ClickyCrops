@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/Plot.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Sprites/Plot/Plot.png" type="Texture" id=2]
+[ext_resource path="res://Resources/CropSprites.tres" type="SpriteFrames" id=3]
+[ext_resource path="res://Assets/Sprites/Plot/PlotHover.png" type="Texture" id=7]
+
+[node name="Plot" type="TextureButton" groups=[
+"resources",
+]]
+anchor_left = -0.05
+anchor_top = -0.089
+anchor_right = 0.05
+anchor_bottom = 0.089
+margin_top = 0.0800018
+margin_bottom = -0.0800018
+texture_normal = ExtResource( 2 )
+texture_hover = ExtResource( 7 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="CropSprites" type="AnimatedSprite" parent="."]
+frames = ExtResource( 3 )
+centered = false
+
+[connection signal="pressed" from="." to="." method="_on_Plot_pressed"]

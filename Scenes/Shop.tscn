@@ -1,0 +1,100 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Assets/Sprites/Carrot/CarrotIcon.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Sprites/Carrot/CarrotIconHover.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/Carrot/CarrotIconToggled.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/Potato/PotatoIcon.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/Potato/PotatoIconHover.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Sprites/Potato/PotatoIconToggled.png" type="Texture" id=6]
+[ext_resource path="res://Scripts/Shop.gd" type="Script" id=7]
+[ext_resource path="res://Assets/Fonts/Airborne.ttf" type="DynamicFontData" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+size = 25
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 18
+font_data = ExtResource( 8 )
+
+[node name="Shop" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="HBox" type="HBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -130.0
+margin_top = -88.0
+margin_right = 130.0
+margin_bottom = -24.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HBox"]
+margin_top = 30.0
+margin_right = 124.0
+margin_bottom = 59.0
+custom_fonts/font = SubResource( 1 )
+text = "BUy plot:"
+align = 1
+valign = 1
+
+[node name="Carrot" type="VBoxContainer" parent="HBox"]
+margin_left = 128.0
+margin_right = 192.0
+margin_bottom = 89.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CostCarrot" type="Label" parent="HBox/Carrot"]
+margin_right = 64.0
+margin_bottom = 21.0
+custom_fonts/font = SubResource( 2 )
+text = "COST: 0"
+
+[node name="ButtonCarrot" type="TextureButton" parent="HBox/Carrot"]
+margin_top = 25.0
+margin_right = 64.0
+margin_bottom = 89.0
+texture_normal = ExtResource( 1 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Potato" type="VBoxContainer" parent="HBox"]
+margin_left = 196.0
+margin_right = 260.0
+margin_bottom = 89.0
+
+[node name="CostPotato" type="Label" parent="HBox/Potato"]
+margin_right = 64.0
+margin_bottom = 21.0
+custom_fonts/font = SubResource( 2 )
+text = "COST: 0"
+
+[node name="ButtonPotato" type="TextureButton" parent="HBox/Potato"]
+margin_top = 25.0
+margin_right = 64.0
+margin_bottom = 89.0
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="HBox/Carrot/ButtonCarrot" to="." method="_on_ButtonCarrot_pressed"]
+[connection signal="pressed" from="HBox/Potato/ButtonPotato" to="." method="_on_ButtonPotato_pressed"]

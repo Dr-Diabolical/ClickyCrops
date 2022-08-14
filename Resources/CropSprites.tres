@@ -1,0 +1,30 @@
+[gd_resource type="SpriteFrames" load_steps=11 format=2]
+
+[ext_resource path="res://Assets/Sprites/Potato/PotatoStageFour.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Sprites/Potato/PotatoStageThree.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/Potato/PotatoStageOne.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/Carrot/CarrotStageThree.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/Carrot/CarrotStageTwo.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Sprites/Potato/PotatoStageTwo.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Sprites/Carrot/CarrotStageOne.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Sprites/Potato/PotatoStageZero.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Sprites/Potato/PotatoStageFive.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Sprites/Carrot/CarrotStageZero.png" type="Texture" id=10]
+
+[resource]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 7 ), ExtResource( 5 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "Carrots",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 3 ), ExtResource( 6 ), ExtResource( 2 ), ExtResource( 1 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "Potatoes",
+"speed": 5.0
+} ]
